@@ -23,7 +23,9 @@ class WriteCLIOpts(Protocol):
     pretend: bool
 
 
-def write_items(lib, query, pretend, force):
+def write_items(
+    lib: Library, query: list[str], pretend: bool, force: bool
+) -> None:
     """Write tag information from the database to the respective files
     in the filesystem.
     """

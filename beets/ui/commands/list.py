@@ -14,7 +14,9 @@ class ListCLIOpts(Protocol):
     album: bool
 
 
-def list_items(lib, query, album, fmt=""):
+def list_items(
+    lib: Library, query: list[str], album: bool, fmt: str = ""
+) -> None:
     """Print out items in lib matching query. If album, then search for
     albums instead of single items.
     """
