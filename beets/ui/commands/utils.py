@@ -7,11 +7,13 @@ from typing import TYPE_CHECKING
 from beets.exceptions import UserError
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from beets.library import Album, Item, Library
 
 
 def do_query(
-    lib: Library, query: list[str], album: bool, also_items: bool = True
+    lib: Library, query: Sequence[str], album: bool, also_items: bool = True
 ) -> tuple[list[Item], list[Album]]:
     """For commands that operate on matched items, performs a query
     and returns a list of matching items and a list of matching
@@ -19,9 +21,9 @@ def do_query(
     a UserError if no items match. also_items controls whether, when
     fetching albums, the associated items should be fetched also.
     """
+    items: list[Item] = []
     if album:
         albums = list(lib.albums(query))
-        items = []
         if also_items:
             for al in albums:
                 items += al.items()

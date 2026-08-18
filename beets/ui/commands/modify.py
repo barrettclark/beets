@@ -12,6 +12,8 @@ from beets.util.deprecation import maybe_replace_legacy_field
 from .utils import do_query
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from beets.library import LibModel, Library
 
 
@@ -60,8 +62,8 @@ def _check_modify_operations(
 def modify_items(
     lib: Library,
     mods: dict[str, ModifyOperation],
-    dels: list[str],
-    query: list[str],
+    dels: Sequence[str],
+    query: Sequence[str],
     write: bool,
     move: bool,
     album: bool,
@@ -129,7 +131,7 @@ def modify_items(
 def print_and_modify(
     obj: LibModel,
     mods: dict[str, list[str]] | dict[str, ModifyOperation],
-    dels: list[str],
+    dels: Sequence[str],
 ) -> bool:
     """Print the modifications to an item and return a bool indicating
     whether any changes were made.
@@ -147,7 +149,7 @@ def print_and_modify(
 
 
 def modify_parse_args(
-    args: list[str], is_album: bool
+    args: Sequence[str], is_album: bool
 ) -> tuple[list[str], dict[str, ModifyOperation], list[str]]:
     """Split the arguments for the modify subcommand into query parts,
     assignments (field=value), and deletions (field!).  Returns the result as
