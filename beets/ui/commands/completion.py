@@ -10,7 +10,7 @@ from beets.util import syspath
 log = logging.getLogger("beets")
 
 
-def print_completion(*args):
+def print_completion(*_) -> None:
     from beets.ui.commands import default_commands
 
     for line in completion_script(default_commands + plugins.commands()):
